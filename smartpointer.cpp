@@ -53,3 +53,18 @@ public:
         std::cout << "Inside Foo::bar()" << std::endl;
     }
 };
+
+int main() {
+    // Create a shared pointer to a Foo object
+    myshared<Foo> p(new Foo);
+
+    // Use the -> operator to access the member function of the underlying object
+    p->bar();
+
+    myshared<int> d(new int(9));
+    cout << "Should print 9: " << *d << endl;
+
+    myshared<int> e(new int(8));
+    d = e;
+    cout << "Should print 8: " << *d << endl;
+}
