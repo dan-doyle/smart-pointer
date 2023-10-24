@@ -32,10 +32,20 @@ class myshared {
 
         // overload assignment operator
         myshared& operator=(const myshared& other) {
-            // we have access to the myshared object we are assigning since this operator is a method!
-            *ref_count += 1;
-            ptr = other.ptr;
-            return *this;
+            // the object's previous assignment may be it's only one
+            if (this != &other) {
+                (*ref_count)--;
+                if(*ref_count == 0) {
+                    delete ptr;
+                    delete ref_count;
+                }
+                // we have access to the myshared object we are assigning since this operator is a method!
+                ref_count = other.ref_count;
+                (*ref_count)++;
+                ptr = other.ptr;
+                return *this;
+            }
+            // else we are assigning to itself and the ref count does not change
         }
 
         T* operator->() {
