@@ -8,7 +8,7 @@ class myshared {
         long *ref_count; // count of shared must be in dynamic memory and each instance of class shares acces
         T* ptr;
     public:
-        myshared(T *ptr_) : ptr(ptr_) {
+        myshared(T *ptr_) : ptr(ptr_) { // receives a pointer to an object allocated on the stack
             ref_count = new long(1);
         }
 
