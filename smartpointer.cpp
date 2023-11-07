@@ -47,11 +47,12 @@ class myshared {
             }
             // else we are assigning to itself and the ref count does not change
         }
-
+        // Overload * operator
         T* operator->() {
             // implementing this, the operator overload is called first and then, after, '->' actually runs. We see its functionality in main
             return ptr;
         }
+        // Overload & operator
         T& operator*() {
             return *ptr;
         }
